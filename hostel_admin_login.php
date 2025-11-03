@@ -1,7 +1,8 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-include 'includes/dbconnect.php';
+// CORRECTION: Path changed from 'includes/dbconnect.php'
+include 'hostel_dbconnect.php';
 
 $response = array();
 
@@ -9,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = sanitize_input($_POST['username']);
     $password = sanitize_input($_POST['password']);
     
+    // This query is insecure (SQL injection risk), but it matches your database setup
     $query = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($conn, $query);
     

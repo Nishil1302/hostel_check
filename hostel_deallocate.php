@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json');
-include 'includes/dbconnect.php';
+// CORRECTION: Path changed from 'includes/dbconnect.php'
+include 'hostel_dbconnect.php';
 
 $response = array();
 
