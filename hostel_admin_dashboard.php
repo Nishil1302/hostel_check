@@ -4,7 +4,7 @@ if (!isset($_SESSION['admin_id'])) {
     header('Location: index.html');
     exit();
 }
-include 'includes/dbconnect.php';
+include 'hostel_dbconnect.php'; // Corrected
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +12,7 @@ include 'includes/dbconnect.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Hostel System</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+    <link rel="stylesheet" href="hostel_css.css"> </head>
 <body>
     <div class="container">
         <header>
@@ -23,13 +22,8 @@ include 'includes/dbconnect.php';
 
         <nav>
             <div>
-                <a href="admin_dashboard.php">Dashboard</a>
-                <a href="manage_rooms.php">Manage Rooms</a>
-                <a href="manage_students.php">Manage Students</a>
-                <a href="view_complaints.php">View Complaints</a>
-            </div>
-            <a href="logout.php" class="logout-btn">Logout</a>
-        </nav>
+                <a href="hostel_admin_dashboard.php">Dashboard</a> <a href="manage_rooms.php">Manage Rooms</a> <a href="hostel_manage_students.php">Manage Students</a> <a href="hostel_view_complaints.php">View Complaints</a> </div>
+            <a href="hostel_logout.php" class="logout-btn">Logout</a> </nav>
 
         <div class="dashboard-stats">
             <div class="stat-card">
@@ -53,9 +47,7 @@ include 'includes/dbconnect.php';
         <div class="main-content">
             <div class="card full-width">
                 <h2>Quick Actions</h2>
-                <button onclick="location.href='manage_students.php'" class="btn btn-primary">Allocate Rooms</button>
-                <button onclick="location.href='view_complaints.php'" class="btn btn-info">View Complaints</button>
-                <button onclick="exportData('json')" class="btn btn-success">Export JSON</button>
+                <button onclick="location.href='hostel_manage_students.php'" class="btn btn-primary">Allocate Rooms</button> <button onclick="location.href='hostel_view_complaints.php'" class="btn btn-info">View Complaints</button> <button onclick="exportData('json')" class="btn btn-success">Export JSON</button>
                 <button onclick="exportData('xml')" class="btn btn-success">Export XML</button>
             </div>
 
@@ -82,7 +74,8 @@ include 'includes/dbconnect.php';
                         if ($row['room_no']) {
                             echo '<button onclick="deallocateRoom(' . $row['student_id'] . ')" class="btn btn-danger">Deallocate</button>';
                         } else {
-                            echo '<button onclick="location.href=\'allocate.php?id=' . $row['student_id'] . '\'" class="btn btn-success">Allocate</button>';
+                            // Corrected link, but this is not a good way to pass ID. The JS function is better.
+                            echo '<button onclick="location.href=\'hostel_manage_students.php\'" class="btn btn-success">Allocate</button>'; 
                         }
                         echo '</td>';
                         echo '</tr>';
@@ -96,6 +89,5 @@ include 'includes/dbconnect.php';
         </div>
     </div>
 
-    <script src="assets/js/script.js"></script>
-</body>
+    <script src="hostel_js.js"></script> </body>
 </html>

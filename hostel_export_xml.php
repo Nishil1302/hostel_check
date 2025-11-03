@@ -1,5 +1,5 @@
 <?php
-include 'includes/dbconnect.php';
+include 'hostel_dbconnect.php'; // Corrected
 
 // Create XML document
 $xml = new DOMDocument('1.0', 'UTF-8');

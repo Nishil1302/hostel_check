@@ -1,6 +1,6 @@
 // Check Room Availability using AJAX
 function checkAvailability() {
-    fetch('fetch_rooms.php')
+    fetch('hostel_fetch_rooms.php') // Corrected
         .then(response => response.json())
         .then(data => {
             let list = document.getElementById("roomList");
@@ -47,7 +47,7 @@ if (document.getElementById('adminLoginForm')) {
         formData.append('username', username);
         formData.append('password', password);
         
-        fetch('admin_login.php', {
+        fetch('hostel_admin_login.php', { // Corrected
             method: 'POST',
             body: formData
         })
@@ -57,7 +57,7 @@ if (document.getElementById('adminLoginForm')) {
             if (data.success) {
                 msgDiv.innerHTML = '<div class="message message-success">Login successful! Redirecting...</div>';
                 setTimeout(() => {
-                    window.location.href = 'admin_dashboard.php';
+                    window.location.href = 'hostel_admin_dashboard.php'; // Corrected
                 }, 1500);
             } else {
                 msgDiv.innerHTML = `<div class="message message-error">${data.message}</div>`;
@@ -78,7 +78,7 @@ if (document.getElementById('registerForm')) {
         
         const formData = new FormData(this);
         
-        fetch('register_student.php', {
+        fetch('hostel_register_student.php', { // Corrected
             method: 'POST',
             body: formData
         })
@@ -107,7 +107,7 @@ if (document.getElementById('complaintForm')) {
         
         const formData = new FormData(this);
         
-        fetch('submit_complaint.php', {
+        fetch('hostel_complaints.php', { // Corrected (was submit_complaint.php)
             method: 'POST',
             body: formData
         })
@@ -137,7 +137,7 @@ function allocateRoom(studentId, roomNo) {
     formData.append('student_id', studentId);
     formData.append('room_no', roomNo);
     
-    fetch('allocate_room.php', {
+    fetch('hostel_allocate.php', { // Corrected
         method: 'POST',
         body: formData
     })
@@ -163,7 +163,7 @@ function deallocateRoom(studentId) {
     const formData = new FormData();
     formData.append('student_id', studentId);
     
-    fetch('deallocate_room.php', {
+    fetch('hostel_deallocate.php', { // Corrected
         method: 'POST',
         body: formData
     })
@@ -188,7 +188,7 @@ function updateComplaintStatus(compId, status) {
     formData.append('comp_id', compId);
     formData.append('status', status);
     
-    fetch('update_complaint.php', {
+    fetch('hostel_update_complaint.php', { // Corrected
         method: 'POST',
         body: formData
     })
@@ -211,7 +211,9 @@ function updateComplaintStatus(compId, status) {
 function searchStudents() {
     const query = document.getElementById('searchQuery').value;
     
-    fetch(`search_students.php?q=${encodeURIComponent(query)}`)
+    // Note: You did not provide a 'hostel_search_students.php' file.
+    // I have updated the path, but you will need to make sure this file exists.
+    fetch(`hostel_search_students.php?q=${encodeURIComponent(query)}`) // Corrected
         .then(response => response.json())
         .then(data => {
             displaySearchResults(data);
@@ -244,12 +246,12 @@ function displaySearchResults(data) {
 
 // Export Data
 function exportData(format) {
-    window.location.href = `export_${format}.php`;
+    window.location.href = `hostel_export_${format}.php`; // Corrected
 }
 
 // Load dashboard stats
 function loadDashboardStats() {
-    fetch('get_stats.php')
+    fetch('hostel_get_stats.php') // Corrected
         .then(response => response.json())
         .then(data => {
             if (data.success) {

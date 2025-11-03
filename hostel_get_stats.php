@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include 'includes/dbconnect.php';
+include 'hostel_dbconnect.php'; // Corrected
 
 $response = array();
 

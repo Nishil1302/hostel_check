@@ -4,7 +4,7 @@ if (!isset($_SESSION['admin_id'])) {
     header('Location: index.html');
     exit();
 }
-include 'includes/dbconnect.php';
+include 'hostel_dbconnect.php'; // Corrected
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +12,7 @@ include 'includes/dbconnect.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Complaints - Admin</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+    <link rel="stylesheet" href="hostel_css.css"> </head>
 <body>
     <div class="container">
         <header>
@@ -23,13 +22,8 @@ include 'includes/dbconnect.php';
 
         <nav>
             <div>
-                <a href="admin_dashboard.php">Dashboard</a>
-                <a href="manage_rooms.php">Manage Rooms</a>
-                <a href="manage_students.php">Manage Students</a>
-                <a href="view_complaints.php">View Complaints</a>
-            </div>
-            <a href="logout.php" class="logout-btn">Logout</a>
-        </nav>
+                <a href="hostel_admin_dashboard.php">Dashboard</a> <a href="manage_rooms.php">Manage Rooms</a> <a href="hostel_manage_students.php">Manage Students</a> <a href="hostel_view_complaints.php">View Complaints</a> </div>
+            <a href="hostel_logout.php" class="logout-btn">Logout</a> </nav>
 
         <div class="main-content">
             <div class="card full-width">
@@ -72,6 +66,5 @@ include 'includes/dbconnect.php';
         </div>
     </div>
 
-    <script src="assets/js/script.js"></script>
-</body>
+    <script src="hostel_js.js"></script> </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-include 'includes/dbconnect.php';
+include 'hostel_dbconnect.php'; // Corrected
 
 // Fetch all data
 $students = fetch_all("SELECT * FROM students");

@@ -1,47 +1,61 @@
-USE hostel_db;
+-- This creates the database. You can skip this line if you've already created it.
+CREATE DATABASE IF NOT EXISTS `hostel_db`;
 
--- Students Table
-CREATE TABLE students (
-    student_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    roll_no VARCHAR(20) UNIQUE NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    department VARCHAR(30) NOT NULL,
-    year INT NOT NULL,
-    room_no VARCHAR(10) DEFAULT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (room_no) REFERENCES rooms(room_no) ON DELETE SET NULL
-);
+-- Use the database
+USE `hostel_db`;
 
+-- ---
+-- CORRECTED ORDER: Create 'rooms' table first
+-- ---
 -- Rooms Table
 CREATE TABLE rooms (
-    room_no VARCHAR(10) PRIMARY KEY,
-    capacity INT NOT NULL DEFAULT 4,
-    occupied INT NOT NULL DEFAULT 0,
-    status VARCHAR(20) NOT NULL DEFAULT 'Available',
-    floor INT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	room_no VARCHAR(10) PRIMARY KEY,
+	capacity INT NOT NULL DEFAULT 4,
+	occupied INT NOT NULL DEFAULT 0,
+	status VARCHAR(20) NOT NULL DEFAULT 'Available',
+	floor INT,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ---
+-- 'students' table is created second, so the FOREIGN KEY will work
+-- ---
+-- Students Table
+CREATE TABLE students (
+	student_id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(50) NOT NULL,
+	roll_no VARCHAR(20) UNIQUE NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	department VARCHAR(30) NOT NULL,
+	year INT NOT NULL,
+	room_no VARCHAR(10) DEFAULT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (room_no) REFERENCES rooms(room_no) ON DELETE SET NULL
 );
 
 -- Complaints Table
 CREATE TABLE complaints (
-    comp_id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT NOT NULL,
-    complaint_text TEXT NOT NULL,
-    date DATE NOT NULL,
-    status VARCHAR(20) NOT NULL DEFAULT 'Pending',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
+	comp_id INT AUTO_INCREMENT PRIMARY KEY,
+	student_id INT NOT NULL,
+	complaint_text TEXT NOT NULL,
+	date DATE NOT NULL,
+	status VARCHAR(20) NOT NULL DEFAULT 'Pending',
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
 );
 
 -- Admin Table
 CREATE TABLE admin (
-    admin_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(30) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(100),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	admin_id INT AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(30) UNIQUE NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	email VARCHAR(100),
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- ---
+-- Insert Sample Data
+-- ---
 
 -- Insert Sample Admin (username: admin, password: admin123)
 INSERT INTO admin (username, password, email) VALUES 
