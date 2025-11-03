@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Management System</title>
+    <link rel="stylesheet" href="hostel_css.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 Hostel Management System</h1>
+            <p>Manage Your Hostel Rooms Efficiently</p>
+        </header>
+
+        <div class="main-content">
+            <div class="card">
+                <h2>Student Portal</h2>
+                <p>Register for hostel accommodation and manage your room</p>
+                <a href="hostel_register.html" class="btn btn-primary">Student Registration</a>
+                <a href="student_dashboard.html" class="btn btn-secondary">Student Login</a>
+            </div>
+
+            <div class="card">
+                <h2>Admin Portal</h2>
+                <p>Manage rooms, allocations, and complaints</p>
+                <div id="adminLogin">
+                    <form id="adminLoginForm">
+                        <input type="text" id="username" placeholder="Username" required>
+                        <input type="password" id="password" placeholder="Password" required>
+                        <button type="submit" class="btn btn-primary">Admin Login</button>
+                    </form>
+                    <div id="loginMessage"></div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <h2>Check Room Availability</h2>
+                <button onclick="checkAvailability()" class="btn btn-info">View Available Rooms</button>
+                <div id="roomList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
